@@ -1,4 +1,4 @@
-﻿
+
 #Import-Module posh-git
 
 # Import the Chocolatey Profile that contains the necessary code to enable
@@ -12,13 +12,19 @@ if (Test-Path($ChocolateyProfile)) {
 }
 
 function fortune {
-[System.IO.File]::ReadAllText((Split-Path $profile)+'\fortune.txt') -replace "`r`n", "`n" -split "`n%`n" | Get-Random
+  [System.IO.File]::ReadAllText((Split-Path $profile) + '\fortune.txt') -replace "`r`n", "`n" -split "`n%`n" | Get-Random
 }
+
+function c {
+  Clear-Host
+  neofetch
+}
+
 
 Invoke-Expression (&starship init powershell)
 
-neofetch
+c
 
-fortune; cowsay
+fortune; cowsay ""
 
 
